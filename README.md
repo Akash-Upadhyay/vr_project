@@ -110,29 +110,26 @@ The final segmentation is achieved through a weighted combination:
 
 #### CNN Models with Different Configurations
 1. **Configuration 1**
+   - Image Size: 128x128
+   - Epochs: 10
+   - Batch Size: 32
    - Validation Accuracy: 96.33%
    - Validation Loss: 0.1595
-   - Parameters:
-     - Image Size: 128x128
-     - Epochs: 10
-     - Batch Size: 32
 
 2. **Configuration 2**
+   - Image Size: 128x128
+   - Epochs: 10
+   - Batch Size: 32
    - Validation Accuracy: 97.07%
    - Validation Loss: 0.0937
-   - Parameters:
-     - Image Size: 128x128
-     - Epochs: 10
-     - Batch Size: 32
    - Best performing configuration
 
 3. **Configuration 3**
+   - Image Size: 128x128
+   - Epochs: 10
+   - Batch Size: 32
    - Validation Accuracy: 96.70%
    - Validation Loss: 0.0945
-   - Parameters:
-     - Image Size: 128x128
-     - Epochs: 10
-     - Batch Size: 32
 
 ### Model Comparison
 - **Best Overall Performance**: CNN Configuration 2 (97.07% accuracy)
@@ -274,3 +271,94 @@ segmentation_task/output/
 - tqdm
 - PyTorch (for deep learning models)
 - TensorFlow (optional, for additional models)
+
+### CNN Configurations
+
+#### Configuration 1
+- Image Size: 128x128
+- Epochs: 10
+- Batch Size: 32
+- Layers:
+  - Conv2D: 32 filters, kernel size (3,3), activation='relu'
+  - MaxPooling2D: pool size (2,2)
+  - Conv2D: 64 filters, kernel size (3,3), activation='relu'
+  - MaxPooling2D: pool size (2,2)
+  - Flatten
+  - Dense: 128 units, activation='relu'
+  - Dense: 1 unit, activation='sigmoid'
+- Loss Function: Binary Crossentropy
+- Optimizer: Adam
+- Validation Accuracy: 96.33%
+- Validation Loss: 0.1595
+
+#### Configuration 2
+- Image Size: 128x128
+- Epochs: 10
+- Batch Size: 32
+- Layers:
+  - Conv2D: 32 filters, kernel size (3,3), activation='relu'
+  - MaxPooling2D: pool size (2,2)
+  - Conv2D: 64 filters, kernel size (3,3), activation='relu'
+  - MaxPooling2D: pool size (2,2)
+  - Conv2D: 128 filters, kernel size (3,3), activation='relu'
+  - MaxPooling2D: pool size (2,2)
+  - Flatten
+  - Dense: 256 units, activation='relu'
+  - Dense: 1 unit, activation='sigmoid'
+- Loss Function: Binary Crossentropy
+- Optimizer: Adam
+- Validation Accuracy: 97.07%
+- Validation Loss: 0.0937
+- Best performing configuration
+
+#### Configuration 3
+- Image Size: 128x128
+- Epochs: 10
+- Batch Size: 32
+- Layers:
+  - Conv2D: 32 filters, kernel size (3,3), activation='relu'
+  - MaxPooling2D: pool size (2,2)
+  - Conv2D: 64 filters, kernel size (3,3), activation='relu'
+  - MaxPooling2D: pool size (2,2)
+  - Conv2D: 128 filters, kernel size (3,3), activation='relu'
+  - MaxPooling2D: pool size (2,2)
+  - Flatten
+  - Dense: 128 units, activation='relu'
+  - Dense: 1 unit, activation='sigmoid'
+- Loss Function: Binary Crossentropy
+- Optimizer: Adam
+- Validation Accuracy: 96.70%
+- Validation Loss: 0.0945
+
+These configurations were tested to determine the optimal setup for the CNN models in the classification task.
+
+### Reasoning for CNN Configurations
+
+The configurations were chosen based on the following considerations:
+
+1. **Image Size (128x128):**
+   - A balance between computational efficiency and sufficient detail for feature extraction.
+   - Allows for faster training and inference while maintaining accuracy.
+
+2. **Epochs (10):**
+   - Chosen to prevent overfitting while ensuring the model has enough time to learn.
+   - Early stopping was considered to monitor validation loss and prevent overfitting.
+
+3. **Batch Size (32):**
+   - Provides a good balance between training speed and memory usage.
+   - Helps in stabilizing the gradient updates during training.
+
+4. **Layer Architecture:**
+   - Incremental increase in filters (32, 64, 128) to capture hierarchical features.
+   - Use of `relu` activation for non-linearity and `sigmoid` for binary classification output.
+   - MaxPooling layers to reduce spatial dimensions and computational load.
+
+5. **Loss Function (Binary Crossentropy):**
+   - Suitable for binary classification tasks.
+   - Measures the performance of the model by comparing predicted probabilities to actual class labels.
+
+6. **Optimizer (Adam):**
+   - Adaptive learning rate optimization algorithm that combines the advantages of two other extensions of stochastic gradient descent.
+   - Efficient and requires little memory, making it suitable for large datasets and models.
+
+These configurations were iteratively tested and refined to achieve optimal performance in terms of accuracy and computational efficiency.
